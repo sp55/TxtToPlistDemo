@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-
+#import "EHAddressPickerView.h"
 @interface ViewController ()
 
 @end
@@ -23,30 +23,20 @@
 {
     
     
+//    NSError *error;
+//    NSString *path = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"place" ofType:@"txt"] encoding:NSUTF8StringEncoding error:&error];
+//    NSData *data=[path dataUsingEncoding:NSUTF8StringEncoding];
+//    NSArray *testArr=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+//    NSLog(@"==%@\n",testArr);
+//    [testArr writeToFile:@"/Users/admin/Desktop/test.plist" atomically:YES];
     
-    NSError *error;
-    NSString *path = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"place" ofType:@"txt"] encoding:NSUTF8StringEncoding error:&error];
     
-    
-    NSData *data=[path dataUsingEncoding:NSUTF8StringEncoding];
-    
-//    NSLog(@"path==%@",path);
-    
-    NSArray *testArr=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
-    
-   
-//    NSArray *arr =[[NSArray alloc] initWithContentsOfFile:path];
+    EHAddressPickerView *addressPickView = [EHAddressPickerView shareInstance];
+    [self.view addSubview:addressPickView];
+    addressPickView.block = ^(NSString *provinceString,NSString *cityString,NSString *townString){
+        NSLog(@"===%@%@%@",provinceString,cityString,townString);
+    };
 
-    NSLog(@"==%@\n",testArr);
-    
-    
-//    NSArray *lines = [path componentsSeparatedByString:@""];
-//    NSLog(@"==%@",lines);
-    [testArr writeToFile:@"/Users/admin/Desktop/test.plist" atomically:YES];
-    
-   
-
-    
 }
 
 - (void)didReceiveMemoryWarning {
